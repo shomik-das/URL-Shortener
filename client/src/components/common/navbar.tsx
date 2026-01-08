@@ -6,12 +6,10 @@ import React from 'react'
 import { useScroll, motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
+
 const menuItems = [
-    { name: 'Products', href: '#link' },
-    { name: 'Features', href: '#link' },
-    { name: 'Pricing', href: '#link' },
-    { name: 'Resources', href: '#link' },
-    { name: 'Careers', href: '#link' },
+    { name: 'Home', href: '/' },
+    { name: 'Dashboard', href: '/dashboard' },
 ]
 
 export const HeroHeader = () => {
@@ -85,14 +83,14 @@ export const HeroHeader = () => {
                                     asChild
                                     variant="outline"
                                     size="lg">
-                                    <Link href="#">
+                                    <Link href="/auth">
                                         <span>Log in</span>
                                     </Link>
                                 </Button>
                                 <Button
                                     asChild
                                     size="lg">
-                                    <Link href="#">
+                                    <Link href="/auth">
                                         <span>Get Started</span>
                                     </Link>
                                 </Button>

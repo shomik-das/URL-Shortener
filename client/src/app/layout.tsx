@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Roboto, Inter } from "next/font/google";
 import "./globals.css";
 import {HeroHeader} from "@/components/common/navbar";
+import { Toaster } from "sonner"
 
 const roboto = Roboto({subsets:['latin'],variable:'--font-sans'});
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
@@ -33,6 +34,7 @@ export default function RootLayout({
       >
         <HeroHeader />
         {children}
+        <Toaster position="top-right" richColors />
       </body>
     </html>
   );
