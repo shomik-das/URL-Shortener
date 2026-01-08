@@ -46,7 +46,7 @@ export const HeroHeader = () => {
                                 href="/"
                                 aria-label="home"
                                 className="flex items-center space-x-2">
-                                <span className='font-bold text-4xl ' >sintra</span>
+                                <span className='font-bold text-4xl ' >linkra</span>
                             </Link>
 
                             <button
@@ -89,7 +89,7 @@ export const HeroHeader = () => {
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                                 {!isAuthenticated ? (
                                     <Button asChild variant="outline" size="lg">
-                                        <Link href="/login">
+                                        <Link href="/auth">
                                             <span>Log in</span>
                                         </Link>
                                     </Button>

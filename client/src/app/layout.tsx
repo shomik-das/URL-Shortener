@@ -37,7 +37,7 @@ export default function RootLayout({
           <HeroHeader />
         {children}
         </AuthProvider>
-        <Toaster position="bottom-right" richColors />
+        <Toaster position="bottom-right" />
       </body>
     </html>
   );

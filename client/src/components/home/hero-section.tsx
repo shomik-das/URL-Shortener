@@ -11,21 +11,22 @@ export default function HeroSection() {
         <div className="relative z-20 mx-auto flex min-h-screen max-w-7xl flex-col justify-end px-6 pb-10 lg:justify-center lg:pb-0 lg:px-12">
           <div className="max-w-3xl text-left text-white">
             <h1 className="text-4xl font-semibold leading-tight md:text-5xl xl:text-6xl">
-              AI Employees:
+              Turn Long URLs
               <br />
-              Your Helpers
+              Into Powerful 
               <br />
-              That Never Sleep
+              Short Links
             </h1>
 
             <p className="mt-4 max-w-xl text-sm text-white/80 md:text-lg">
-              Build, grow, and scale your business with a team of AI employees.
+              Create short, shareable links in seconds. Track clicks, manage your URLs,
+              and stay in control — all from one simple dashboard.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Button asChild size="lg" className=" font-semibold ">
                 <Link href="#link">
-                  Get Sintra <ChevronRight className="ml-1" />
+                  Get Started <ChevronRight className="ml-1" />
                 </Link>
               </Button>
 
@@ -34,7 +35,7 @@ export default function HeroSection() {
                 size="lg"
                 variant="outline"
               >
-                <Link href="#link">Request a demo</Link>
+                <Link href="#link">Dashboard</Link>
               </Button>
             </div>
           </div>
