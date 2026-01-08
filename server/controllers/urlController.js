@@ -44,7 +44,8 @@ const urlController = {
 
     getMyUrls: async (req, res) => {
         try {
-            const urls = await Url.find({ userId: req.user.id }).sort({ createdAt: -1 });
+            const id = req.user.id;
+            const urls = await Url.find({ userId: id }).sort({ createdAt: -1 });
             res.status(200).json({
                 success: true,
                 urls,
