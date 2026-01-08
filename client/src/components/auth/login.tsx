@@ -6,8 +6,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
+import { useAuth } from "@/context/AuthContext"
 
 export default function LoginForm() {
+  const { setUser } = useAuth()
   const router = useRouter()
 
   const [email, setEmail] = useState("")
@@ -43,6 +45,7 @@ export default function LoginForm() {
       }
 
       toast.success("Logged in successfully")
+      setUser(data.user)
       router.push("/dashboard")
     } catch (error: any) {
       toast.error(error.message || "Login failed")

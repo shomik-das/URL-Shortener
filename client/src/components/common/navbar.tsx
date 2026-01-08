@@ -5,6 +5,9 @@ import { Button } from '@/components/ui/button'
 import React from 'react'
 import { useScroll, motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import { useAuth } from '@/context/AuthContext'
+import { toast } from "sonner"
+
 
 
 const menuItems = [
@@ -13,6 +16,7 @@ const menuItems = [
 ]
 
 export const HeroHeader = () => {
+    const { user, isAuthenticated, logout } = useAuth()
     const [menuState, setMenuState] = React.useState(false)
     const [scrolled, setScrolled] = React.useState(false)
     const { scrollYProgress } = useScroll()
@@ -23,6 +27,10 @@ export const HeroHeader = () => {
         })
         return () => unsubscribe()
     }, [scrollYProgress])
+    const handleLogout = async () => {
+        await logout()
+        toast.success("Logged out successfully")
+    }
 
     return (
         <header>
@@ -79,21 +87,28 @@ export const HeroHeader = () => {
                                 </ul>
                             </div>
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
-                                <Button
-                                    asChild
-                                    variant="outline"
-                                    size="lg">
-                                    <Link href="/auth">
-                                        <span>Log in</span>
-                                    </Link>
-                                </Button>
-                                <Button
+                                {!isAuthenticated ? (
+                                    <Button asChild variant="outline" size="lg">
+                                        <Link href="/login">
+                                            <span>Log in</span>
+                                        </Link>
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        variant="destructive"
+                                        size="lg"
+                                        onClick={handleLogout}
+                                    >
+                                        Logout
+                                    </Button>
+                                )}
+                                {/* <Button
                                     asChild
                                     size="lg">
                                     <Link href="/auth">
                                         <span>Get Started</span>
                                     </Link>
-                                </Button>
+                                </Button> */}
                             </div>
                         </div>
                     </motion.div>

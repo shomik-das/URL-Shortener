@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Roboto, Inter } from "next/font/google";
 import "./globals.css";
 import {HeroHeader} from "@/components/common/navbar";
 import { Toaster } from "sonner"
+import { AuthProvider } from "@/context/AuthContext"
 
 const roboto = Roboto({subsets:['latin'],variable:'--font-sans'});
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
@@ -32,9 +33,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <HeroHeader />
+        <AuthProvider>
+          <HeroHeader />
         {children}
-        <Toaster position="top-right" richColors />
+        </AuthProvider>
+        <Toaster position="bottom-right" richColors />
       </body>
     </html>
   );
