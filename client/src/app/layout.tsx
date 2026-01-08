@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Roboto } from "next/font/google";
+import { Geist, Geist_Mono, Roboto, Inter } from "next/font/google";
 import "./globals.css";
 import {HeroHeader} from "@/components/common/navbar";
 
 const roboto = Roboto({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`dark ${roboto.variable}`}>
+    <html lang="en" className={`dark ${inter.variable}`}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
