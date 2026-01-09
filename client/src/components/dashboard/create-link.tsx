@@ -162,7 +162,7 @@ export default function CreateLink() {
 
               <Button
                 type="submit"
-                className="w-full rounded-md font-semibold"
+                className="w-full font-semibold rounded-md p-6"
                 disabled={loading || urls.length >= 100}
               >
                 {loading ? "Creating..." : "Shorten URL"}
@@ -175,7 +175,7 @@ export default function CreateLink() {
         {shortCode && (
           <Card className="border-green-300">
             <CardHeader>
-              <CardTitle className="text-green-700">Success</CardTitle>
+              <CardTitle className="text-green-700 font-semibold">Success</CardTitle>
               <CardDescription>Your short URL is ready:</CardDescription>
             </CardHeader>
             <CardContent className="flex items-center gap-2">

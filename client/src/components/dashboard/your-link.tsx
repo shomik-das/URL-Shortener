@@ -1,10 +1,30 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { useEffect, useState } from "react"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Copy, Trash2, Check, ExternalLink, Eye, X } from "lucide-react"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import {
+  Copy,
+  Trash2,
+  Check,
+  ExternalLink,
+  Eye,
+  X,
+} from "lucide-react"
 import { format } from "date-fns"
 import { toast } from "sonner"
 
@@ -19,10 +39,11 @@ interface UrlItem {
 export default function LinksPage() {
   const [links, setLinks] = useState<UrlItem[]>([])
   const [loading, setLoading] = useState(true)
-  const [copied, setCopied] = useState<string | null>(null)
+  const [copiedCode, setCopiedCode] = useState<string | null>(null)
   const [deleting, setDeleting] = useState<string | null>(null)
   const [viewingUrl, setViewingUrl] = useState<UrlItem | null>(null)
-  const [copiedFromModal, setCopiedFromModal] = useState(false)
+  const [copiedOriginal, setCopiedOriginal] = useState(false)
+  const [copiedShort, setCopiedShort] = useState(false)
 
   useEffect(() => {
     fetchLinks()
@@ -36,32 +57,39 @@ export default function LinksPage() {
       )
 
       const data = await res.json()
-      if(data.success === false) {
-        toast.error(data.message || "Failed to fetch links")
-        return
-      }
+      if (!res.ok) throw new Error(data.message)
+
       setLinks(data.urls)
-    } catch (error: any) {
-      toast.error(error.message || "Failed to fetch links")
+    } catch (err: any) {
+      toast.error(err.message || "Failed to fetch links")
     } finally {
       setLoading(false)
     }
   }
 
-  const copyToClipboard = async (shortCode: string) => {
-    const fullUrl = `${process.env.NEXT_PUBLIC_API_URL}/${shortCode}`
-    await navigator.clipboard.writeText(fullUrl)
-    setCopied(shortCode)
-    toast.success("Copied to clipboard")
-    setTimeout(() => setCopied(null), 2000)
+  const copyShortFromTable = async (shortCode: string) => {
+    const shortUrl = `${process.env.NEXT_PUBLIC_API_URL}/${shortCode}`
+    await navigator.clipboard.writeText(shortUrl)
+    setCopiedCode(shortCode)
+    toast.success("Short URL copied")
+    setTimeout(() => setCopiedCode(null), 2000)
   }
 
   const copyOriginalUrl = async () => {
     if (!viewingUrl) return
     await navigator.clipboard.writeText(viewingUrl.originalUrl)
-    setCopiedFromModal(true)
+    setCopiedOriginal(true)
     toast.success("Original URL copied")
-    setTimeout(() => setCopiedFromModal(false), 2000)
+    setTimeout(() => setCopiedOriginal(false), 2000)
+  }
+
+  const copyShortFromModal = async () => {
+    if (!viewingUrl) return
+    const shortUrl = `${process.env.NEXT_PUBLIC_API_URL}/${viewingUrl.shortCode}`
+    await navigator.clipboard.writeText(shortUrl)
+    setCopiedShort(true)
+    toast.success("Short URL copied")
+    setTimeout(() => setCopiedShort(false), 2000)
   }
 
   const deleteLink = async (id: string) => {
@@ -78,14 +106,12 @@ export default function LinksPage() {
       )
 
       const data = await res.json()
-      if(data.success === false) {
-        toast.error(data.message || "Failed to delete link")
-        return
-      }
+      if (!res.ok) throw new Error(data.message)
+
       setLinks((prev) => prev.filter((l) => l._id !== id))
       toast.success("Link deleted")
-    } catch (error: any) {
-      toast.error(error.message || "Failed to delete link")
+    } catch (err: any) {
+      toast.error(err.message || "Failed to delete link")
     } finally {
       setDeleting(null)
     }
@@ -94,7 +120,6 @@ export default function LinksPage() {
   return (
     <div className="min-h-screen bg-background p-6">
       <div className="max-w-7xl mx-auto space-y-8">
-
         <div>
           <h1 className="text-3xl font-bold">Your Links</h1>
           <p className="text-muted-foreground">
@@ -150,15 +175,29 @@ export default function LinksPage() {
 
                       <TableCell className="text-right">
                         <div className="flex justify-end gap-2">
-                          <Button size="sm" variant="ghost" onClick={() => setViewingUrl(link)}>
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            className="rounded-md"
+                            onClick={() => setViewingUrl(link)}
+                          >
                             <Eye size={16} />
                           </Button>
 
-                          <Button size="sm" variant="ghost" onClick={() => copyToClipboard(link.shortCode)}>
-                            {copied === link.shortCode ? <Check size={16} /> : <Copy size={16} />}
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            className="rounded-md"
+                            onClick={() => copyShortFromTable(link.shortCode)}
+                          >
+                            {copiedCode === link.shortCode ? (
+                              <Check size={16} />
+                            ) : (
+                              <Copy size={16} />
+                            )}
                           </Button>
 
-                          <Button size="sm" variant="ghost" asChild>
+                          <Button size="sm" variant="ghost" className="rounded-md" asChild>
                             <a
                               href={`${process.env.NEXT_PUBLIC_API_URL}/${link.shortCode}`}
                               target="_blank"
@@ -173,7 +212,7 @@ export default function LinksPage() {
                             variant="ghost"
                             onClick={() => deleteLink(link._id)}
                             disabled={deleting === link._id}
-                            className="text-red-600"
+                            className="text-red-600 rounded-md"
                           >
                             <Trash2 size={16} />
                           </Button>
@@ -207,9 +246,19 @@ export default function LinksPage() {
                 {viewingUrl.originalUrl}
               </div>
 
-              <Button onClick={copyOriginalUrl} className="w-full">
-                {copiedFromModal ? "Copied!" : "Copy Original URL"}
-              </Button>
+              <div className="flex gap-2">
+                <Button onClick={copyOriginalUrl} className=" rounded-md ">
+                  {copiedOriginal ? "Copied!" : "Copy Original URL"}
+                </Button>
+
+                <Button
+                  onClick={copyShortFromModal}
+                  variant="outline"
+                  className="rounded-md"
+                >
+                  {copiedShort ? "Copied!" : "Copy Short URL"}
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </div>
