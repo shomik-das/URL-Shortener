@@ -46,7 +46,7 @@ export const HeroHeader = () => {
                                 href="/"
                                 aria-label="home"
                                 className="flex items-center space-x-2">
-                                <span className='font-bold text-4xl ' >linkra</span>
+                                <span className='font-bold text-4xl ' >linkra.</span>
                             </Link>
 
                             <button
@@ -88,7 +88,7 @@ export const HeroHeader = () => {
                             </div>
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                                 {!isAuthenticated ? (
-                                    <Button asChild variant="outline" size="lg">
+                                    <Button asChild size="lg" className='rounded-md font-semibold'>
                                         <Link href="/auth">
                                             <span>Log in</span>
                                         </Link>
@@ -98,6 +98,7 @@ export const HeroHeader = () => {
                                         variant="destructive"
                                         size="lg"
                                         onClick={handleLogout}
+                                        className='rounded-md font-semibold'
                                     >
                                         Logout
                                     </Button>

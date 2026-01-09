@@ -24,7 +24,7 @@ export default function HeroSection() {
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-4">
-              <Button asChild size="lg" className=" font-semibold ">
+              <Button asChild size="lg" className=" font-semibold rounded-md">
                 <Link href="#link">
                   Get Started <ChevronRight className="ml-1" />
                 </Link>
@@ -34,6 +34,7 @@ export default function HeroSection() {
                 asChild
                 size="lg"
                 variant="outline"
+                className='rounded-md'
               >
                 <Link href="#link">Dashboard</Link>
               </Button>
