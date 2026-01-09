@@ -87,7 +87,7 @@ export default function CreateLink() {
   };
 
   const copyToClipboard = async () => {
-    const fullUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/url/${shortCode}`;
+    const fullUrl = `${process.env.NEXT_PUBLIC_API_URL}/${shortCode}`;
     await navigator.clipboard.writeText(fullUrl);
     setCopied(true);
     toast.success("Copied to clipboard");
@@ -183,7 +183,7 @@ export default function CreateLink() {
                 <LinkIcon className="h-4 w-4" />
               </span>
               <Input
-                value={`${process.env.NEXT_PUBLIC_API_URL}/api/url/${shortCode}`}
+                value={`${process.env.NEXT_PUBLIC_API_URL}/${shortCode}`}
                 readOnly
                 className="w-full"
               ></Input>

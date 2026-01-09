@@ -6,11 +6,10 @@ import Link from 'next/link';
 import {
   Home,
   Link2,
-  User as UserIcon,
   LogOutIcon,
-  Settings,
   Moon,
   Sun,
+  Plus
 } from "lucide-react";
 import {
   Sidebar,
@@ -36,7 +35,7 @@ import { useAuth } from '@/context/AuthContext';
 import { toast } from 'sonner';
 
 const menuItems = [
-  { title: 'Add link', icon: Home, href: "/dashboard/add-link" },
+  { title: 'Add link', icon: Plus, href: "/dashboard/add-link" },
   { title: 'Your Links', icon: Link2, href: '/dashboard/your-links' },
 ];
 

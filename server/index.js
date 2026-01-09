@@ -4,6 +4,7 @@ const http = require('http');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const connectDB = require('./config/db');
+const urlController = require('./controllers/urlController');
 
 const app = express();
 
@@ -26,6 +27,8 @@ app.use(express.json());
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/url', require('./routes/urlRoutes'));
+
+app.get('/:shortCode', urlController.redirect);
 
 app.get('/', (req, res) => {
     res.send('Welcome to API');

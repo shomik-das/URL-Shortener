@@ -7,7 +7,5 @@ router.post('/shorten', authMiddleware, urlController.shortenUrl);
 router.get('/my-urls', authMiddleware, urlController.getMyUrls);
 router.delete('/:id', authMiddleware, urlController.deleteUrl);
 
-router.get('/:shortCode', urlController.redirect);
-
 
 module.exports = router;
