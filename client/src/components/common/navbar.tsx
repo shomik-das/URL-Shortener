@@ -12,7 +12,9 @@ import { toast } from "sonner"
 
 const menuItems = [
     { name: 'Home', href: '/' },
-    { name: 'Dashboard', href: '/dashboard' },
+    { name: 'Dashboard', href: '/dashboard/add-link' },
+    { name: 'Features', href: '#link' },
+    { name: 'About', href: '#link' },
 ]
 
 export const HeroHeader = () => {

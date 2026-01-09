@@ -1,9 +1,9 @@
-
+import CreateLink from "@/components/dashboard/create-link"
 
 export default function Page() {
   return(
     <>
-    <h1>add</h1>
+      <CreateLink />
     </>
   )
 }

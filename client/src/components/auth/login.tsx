@@ -28,7 +28,7 @@ export default function LoginForm() {
       setIsLoading(true)
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
         {
           method: "POST",
           headers: {
@@ -46,7 +46,7 @@ export default function LoginForm() {
 
       toast.success("Logged in successfully")
       setUser(data.user)
-      router.push("/dashboard")
+      router.push("/dashboard/add-link")
     } catch (error: any) {
       toast.error(error.message || "Login failed")
     } finally {
@@ -86,7 +86,7 @@ export default function LoginForm() {
             />
           </div>
 
-          <Button type="submit" className="w-full" disabled={isLoading}>
+          <Button type="submit" className="w-full font-semibold" disabled={isLoading}>
             {isLoading ? "Logging in..." : "Log in"}
           </Button>
         </form>

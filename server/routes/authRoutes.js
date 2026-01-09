@@ -9,6 +9,7 @@ router.post('/logout', auth.logout);
 router.get('/me', authMiddleware, (req, res) => {
     res.status(200).json({
         success: true,
+        message: "User fetched successfully",
         user: req.user,
     });
 })

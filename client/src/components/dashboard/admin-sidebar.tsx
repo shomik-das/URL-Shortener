@@ -5,7 +5,6 @@ import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import {
   Home,
-  Inbox,
   Link2,
   User as UserIcon,
   LogOutIcon,
@@ -80,12 +79,12 @@ export const AdminSidebar = memo(() => {
         <SidebarHeader>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton size="lg">
+              <SidebarMenuButton size="lg" className="flex items-center gap-3 p-3">
                 <Avatar className="rounded-md overflow-hidden">
                   <AvatarImage
                     src={user?.image}
                     alt="Profile image"
-                    className="object-cover"
+                    className="object-cover rounded-md"
                   />
                   <AvatarFallback>
                     {user?.firstName?.[0] ?? "U"}
@@ -120,7 +119,7 @@ export const AdminSidebar = memo(() => {
                       asChild
                       className={
                         isActive
-                          ? 'bg-primary/90 text-primary-foreground hover:bg-primary/90'
+                          ? 'bg-primary/90 text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground'
                           : ''
                       }
                     >

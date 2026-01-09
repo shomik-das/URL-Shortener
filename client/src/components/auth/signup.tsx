@@ -28,7 +28,7 @@ export default function SignupForm() {
       setIsLoading(true)
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/signup`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/signup`,
         {
           method: "POST",
           headers: {
@@ -114,7 +114,7 @@ export default function SignupForm() {
             />
           </div>
 
-          <Button type="submit" className="w-full" disabled={isLoading}>
+          <Button type="submit" className="w-full font-semibold" disabled={isLoading}>
             {isLoading ? "Creating account..." : "Sign up"}
           </Button>
         </form>

@@ -72,6 +72,9 @@ const auth = {
             if (await bcrypt.compare(password, user.password)) {
                 const payload = {
                     email: user.email,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    image: user.image,
                     id: user._id,
                 };
 
