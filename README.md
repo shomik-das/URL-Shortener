@@ -4,6 +4,14 @@
 
 The application is designed with scalability, security, and simplicity in mind, ensuring a smooth experience from link creation to redirection.
 
+
+![Screenshot 1](photos/hero.png)
+![Screenshot 1](photos/features.png)
+![Screenshot 1](photos/auth.png)
+![Screenshot 1](photos/addLink.png)
+![Screenshot 1](photos/links.png)
+
+
 ## Features
 
 - **User Authentication** – Secure login and signup system using JWT and httpOnly cookies.
@@ -54,7 +62,6 @@ The application is designed with scalability, security, and simplicity in mind, 
 
 ### Clone the repository
 ```sh
-git clone <your-repository-url>
 cd url-shortener
 
 cd server
@@ -66,4 +73,5 @@ cd client
 npm install
 npm run dev
 ```
+
 
