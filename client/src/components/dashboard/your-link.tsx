@@ -232,8 +232,8 @@ export default function LinksPage() {
           <Card className="w-full max-w-2xl">
             <CardHeader className="flex flex-row justify-between">
               <CardTitle>Link Details</CardTitle>
-              <Button size="sm" variant="ghost" onClick={() => setViewingUrl(null)}>
-                <X size={18} />
+              <Button size="lg" className="rounded-md" variant="ghost" onClick={() => setViewingUrl(null)}>
+                <X/>
               </Button>
             </CardHeader>
 

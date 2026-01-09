@@ -1,7 +1,11 @@
 import { Link, BarChart3 } from "lucide-react";
+import { HeroHeader } from "@/components/common/navbar";
+import FooterSection from "@/components/common/footer";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
+    <>
+    <HeroHeader />
     <div className="min-h-[calc(100vh-4rem)] from-background via-card/50 to-background flex items-center justify-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
       <div className="w-full grid lg:grid-cols-2 gap-8 items-center transition-height">
         {/* Left side - Welcome content */}
@@ -43,5 +47,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </div>
     </div>
+    <FooterSection />
+    </>
   );
 }

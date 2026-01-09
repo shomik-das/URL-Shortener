@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Roboto, Inter } from "next/font/google";
 import "./globals.css";
-import {HeroHeader} from "@/components/common/navbar";
 import { Toaster } from "sonner"
 import { AuthProvider } from "@/context/AuthContext"
-import FooterSection from "@/components/common/footer";
+import ScrollToTop from "@/components/common/scroll-to-top";
 
 const roboto = Roboto({subsets:['latin'],variable:'--font-sans'});
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
@@ -35,9 +34,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider>
-          {/* <HeroHeader /> */}
+          <ScrollToTop />
             {children}
-          {/* <FooterSection /> */}
         </AuthProvider>
         <Toaster position="bottom-right" />
       </body>

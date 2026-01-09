@@ -18,22 +18,22 @@ export default function FeaturesSection() {
         <div className="px-3 pt-3 md:-mx-8">
           <div className="aspect-88/36 mask-b-from-75% mask-b-to-95% relative">
             <Image
-              src="/image.png"
-              className="absolute inset-0 z-10"
+              src="/feature2.png"
+              className="absolute rounded-3xl inset-0 z-10"
               alt="dashboard preview"
               width={2797}
               height={1137}
             />
             <Image
-              src="/image.png"
-              className="hidden dark:block"
+              src="/feature2.png"
+              className="hidden rounded-3xl dark:block"
               alt="dashboard preview dark"
               width={2797}
               height={1137}
             />
             <Image
-              src="/image.png"
-              className="dark:hidden"
+              src="/feature2.png"
+              className="dark:hidden rounded-3xl"
               alt="dashboard preview light"
               width={2797}
               height={1137}
