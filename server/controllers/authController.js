@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const isProduction = process.env.NODE_ENV === "production";
 
 const auth = {
     signup: async (req, res) => {
@@ -85,10 +86,11 @@ const auth = {
                 user.password = undefined;
 
                 const options = {
-                    expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
                     httpOnly: true,
-                    secure: true,
-                    sameSite: "None",
+                    secure: isProduction,
+                    sameSite: isProduction ? "None" : "Lax",
+                    path: "/",
+                    maxAge: 3 * 24 * 60 * 60 * 1000, // 3 days
                 };
 
                 res.cookie("token", token, options).status(200).json({
